@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1022
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindSpecialNumber", "FindSpecialNumber\FindSpecialNumber.csproj", "{FF3C59AD-E244-4333-8100-2D22CE3270C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF3C59AD-E244-4333-8100-2D22CE3270C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF3C59AD-E244-4333-8100-2D22CE3270C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF3C59AD-E244-4333-8100-2D22CE3270C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF3C59AD-E244-4333-8100-2D22CE3270C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {424F294C-F8D0-477C-B9B8-218674C1CE2B}
+	EndGlobalSection
+EndGlobal

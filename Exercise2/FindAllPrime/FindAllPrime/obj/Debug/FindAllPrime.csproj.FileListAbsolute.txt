@@ -1,0 +1,7 @@
+C:\Users\lou\source\repos\FindAllPrime\FindAllPrime\bin\Debug\FindAllPrime.exe.config
+C:\Users\lou\source\repos\FindAllPrime\FindAllPrime\bin\Debug\FindAllPrime.exe
+C:\Users\lou\source\repos\FindAllPrime\FindAllPrime\bin\Debug\FindAllPrime.pdb
+C:\Users\lou\source\repos\FindAllPrime\FindAllPrime\obj\Debug\FindAllPrime.csprojAssemblyReference.cache
+C:\Users\lou\source\repos\FindAllPrime\FindAllPrime\obj\Debug\FindAllPrime.csproj.CoreCompileInputs.cache
+C:\Users\lou\source\repos\FindAllPrime\FindAllPrime\obj\Debug\FindAllPrime.exe
+C:\Users\lou\source\repos\FindAllPrime\FindAllPrime\obj\Debug\FindAllPrime.pdb

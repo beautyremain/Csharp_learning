@@ -1,0 +1,6 @@
+C:\Users\lou\source\repos\FindSpecialNumber\FindSpecialNumber\bin\Debug\FindSpecialNumber.exe.config
+C:\Users\lou\source\repos\FindSpecialNumber\FindSpecialNumber\bin\Debug\FindSpecialNumber.exe
+C:\Users\lou\source\repos\FindSpecialNumber\FindSpecialNumber\bin\Debug\FindSpecialNumber.pdb
+C:\Users\lou\source\repos\FindSpecialNumber\FindSpecialNumber\obj\Debug\FindSpecialNumber.csproj.CoreCompileInputs.cache
+C:\Users\lou\source\repos\FindSpecialNumber\FindSpecialNumber\obj\Debug\FindSpecialNumber.exe
+C:\Users\lou\source\repos\FindSpecialNumber\FindSpecialNumber\obj\Debug\FindSpecialNumber.pdb
