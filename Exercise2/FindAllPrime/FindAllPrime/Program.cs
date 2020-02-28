@@ -34,7 +34,7 @@ namespace FindAllPrime
             }
             try
             {
-                while (answer[loc] < System.Math.Sqrt(answer.Last()))
+                while (answer[loc]* answer[loc] < answer.Last())
                 {
                     for (int j = loc + 1; j < answer.ToArray().Length; j++)
                     {
