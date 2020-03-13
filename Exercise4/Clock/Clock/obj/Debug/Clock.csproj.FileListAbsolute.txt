@@ -1,0 +1,7 @@
+C:\Users\lou\source\repos\Clock\Clock\bin\Debug\Clock.exe.config
+C:\Users\lou\source\repos\Clock\Clock\bin\Debug\Clock.exe
+C:\Users\lou\source\repos\Clock\Clock\bin\Debug\Clock.pdb
+C:\Users\lou\source\repos\Clock\Clock\obj\Debug\Clock.csprojAssemblyReference.cache
+C:\Users\lou\source\repos\Clock\Clock\obj\Debug\Clock.csproj.CoreCompileInputs.cache
+C:\Users\lou\source\repos\Clock\Clock\obj\Debug\Clock.exe
+C:\Users\lou\source\repos\Clock\Clock\obj\Debug\Clock.pdb
