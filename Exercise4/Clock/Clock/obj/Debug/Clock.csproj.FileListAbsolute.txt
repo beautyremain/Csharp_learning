@@ -5,3 +5,10 @@ C:\Users\lou\source\repos\Clock\Clock\obj\Debug\Clock.csprojAssemblyReference.ca
 C:\Users\lou\source\repos\Clock\Clock\obj\Debug\Clock.csproj.CoreCompileInputs.cache
 C:\Users\lou\source\repos\Clock\Clock\obj\Debug\Clock.exe
 C:\Users\lou\source\repos\Clock\Clock\obj\Debug\Clock.pdb
+D:\cjk\CsharpHomework\Exercise4\Clock\Clock\bin\Debug\Clock.exe.config
+D:\cjk\CsharpHomework\Exercise4\Clock\Clock\bin\Debug\Clock.exe
+D:\cjk\CsharpHomework\Exercise4\Clock\Clock\bin\Debug\Clock.pdb
+D:\cjk\CsharpHomework\Exercise4\Clock\Clock\obj\Debug\Clock.csprojAssemblyReference.cache
+D:\cjk\CsharpHomework\Exercise4\Clock\Clock\obj\Debug\Clock.csproj.CoreCompileInputs.cache
+D:\cjk\CsharpHomework\Exercise4\Clock\Clock\obj\Debug\Clock.exe
+D:\cjk\CsharpHomework\Exercise4\Clock\Clock\obj\Debug\Clock.pdb
