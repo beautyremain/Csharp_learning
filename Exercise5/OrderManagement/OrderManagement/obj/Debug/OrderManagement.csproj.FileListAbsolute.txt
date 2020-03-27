@@ -5,3 +5,9 @@ C:\Users\lou\source\repos\OrderManagement\OrderManagement\obj\Debug\OrderManagem
 C:\Users\lou\source\repos\OrderManagement\OrderManagement\obj\Debug\OrderManagement.csproj.CoreCompileInputs.cache
 C:\Users\lou\source\repos\OrderManagement\OrderManagement\obj\Debug\OrderManagement.exe
 C:\Users\lou\source\repos\OrderManagement\OrderManagement\obj\Debug\OrderManagement.pdb
+C:\Users\lou\source\repos\OrderManagement\OrderManagement\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\lou\source\repos\OrderManagement\OrderManagement\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.dll
+C:\Users\lou\source\repos\OrderManagement\OrderManagement\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\lou\source\repos\OrderManagement\OrderManagement\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\lou\source\repos\OrderManagement\OrderManagement\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestTools.UITest.Extension.resources.dll
+C:\Users\lou\source\repos\OrderManagement\OrderManagement\obj\Debug\OrderManagement.csproj.CopyComplete
