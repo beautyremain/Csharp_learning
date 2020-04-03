@@ -1,0 +1,10 @@
+C:\Users\lou\source\repos\PaintTree\PaintTree\bin\Debug\PaintTree.exe.config
+C:\Users\lou\source\repos\PaintTree\PaintTree\bin\Debug\PaintTree.exe
+C:\Users\lou\source\repos\PaintTree\PaintTree\bin\Debug\PaintTree.pdb
+C:\Users\lou\source\repos\PaintTree\PaintTree\obj\Debug\PaintTree.csprojAssemblyReference.cache
+C:\Users\lou\source\repos\PaintTree\PaintTree\obj\Debug\PaintTree.Form1.resources
+C:\Users\lou\source\repos\PaintTree\PaintTree\obj\Debug\PaintTree.Properties.Resources.resources
+C:\Users\lou\source\repos\PaintTree\PaintTree\obj\Debug\PaintTree.csproj.GenerateResource.cache
+C:\Users\lou\source\repos\PaintTree\PaintTree\obj\Debug\PaintTree.csproj.CoreCompileInputs.cache
+C:\Users\lou\source\repos\PaintTree\PaintTree\obj\Debug\PaintTree.exe
+C:\Users\lou\source\repos\PaintTree\PaintTree\obj\Debug\PaintTree.pdb
