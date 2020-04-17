@@ -1,0 +1,10 @@
+C:\Users\lou\source\repos\Spider1\Spider1\obj\Debug\Spider1.csprojAssemblyReference.cache
+C:\Users\lou\source\repos\Spider1\Spider1\obj\Debug\Spider1.Form1.resources
+C:\Users\lou\source\repos\Spider1\Spider1\obj\Debug\Spider1.Properties.Resources.resources
+C:\Users\lou\source\repos\Spider1\Spider1\obj\Debug\Spider1.csproj.GenerateResource.cache
+C:\Users\lou\source\repos\Spider1\Spider1\obj\Debug\Spider1.csproj.CoreCompileInputs.cache
+C:\Users\lou\source\repos\Spider1\Spider1\bin\Debug\Spider1.exe.config
+C:\Users\lou\source\repos\Spider1\Spider1\bin\Debug\Spider1.exe
+C:\Users\lou\source\repos\Spider1\Spider1\bin\Debug\Spider1.pdb
+C:\Users\lou\source\repos\Spider1\Spider1\obj\Debug\Spider1.exe
+C:\Users\lou\source\repos\Spider1\Spider1\obj\Debug\Spider1.pdb
