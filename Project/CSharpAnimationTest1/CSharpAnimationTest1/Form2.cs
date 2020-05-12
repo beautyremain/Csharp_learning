@@ -15,17 +15,23 @@ namespace CSharpAnimationTest1
     {
         public Basic basic;
         List<ListItem> items = new List<ListItem>();
+        List<ListItem> defaultItems = new List<ListItem>();
         List<PictureBox> pictureBoxes = new List<PictureBox>();
         List<AngleCollection> historys = new List<AngleCollection>();
+        private void historyReset()
+        {
+            historys.Clear();
+            for(int i=0;i<5;i++)
+            {
+                historys.Add(new AngleCollection(0, 0, 0));
+            }
+        }
         public Form2()
         {
             InitializeComponent();
             //button2.Click += button1_Click;
             basic = new Basic();
-            for(int i=0;i<5;i++)
-            {
-                historys.Add(new AngleCollection(0, 0, 0));
-            }
+            historyReset();
             foreach (Control control in this.Controls)
             {
                 if(control is PictureBox)
@@ -40,7 +46,17 @@ namespace CSharpAnimationTest1
             items.Add(new ListItem("2", "P2"));
             items.Add(new ListItem("3", "P3"));
             items.Add(new ListItem("4", "P4"));
+            defaultItems.Add(new ListItem("0", "简单的成功申请"));
+            defaultItems.Add(new ListItem("1", "超出资源需求的申请"));
+            defaultItems.Add(new ListItem("2", "复杂的成功申请"));
+            defaultItems.Add(new ListItem("3", "预分配产生死锁的申请"));
+            comboBox2.DisplayMember = "Text";        //显示
+            comboBox2.ValueMember = "Value";        //值
+            comboBox2.DataSource = defaultItems;        //绑定数据
+            comboBox2.SelectedIndex = -1;
             //items.Add(new ListItem("5", "Item_5_Text"));
+            this.label_detail.Visible = false;
+            this.listBox2.Visible = false;
             comboBox1.DisplayMember = "Text";        //显示
             comboBox1.ValueMember = "Value";        //值
             comboBox1.DataSource = items;        //绑定数据
@@ -75,6 +91,50 @@ namespace CSharpAnimationTest1
             timer.Tick += new EventHandler((o, e) => activePieEvent(graphics, solidBrush, solidBrush2, rectangle, angle1, angle2, timer, ref Tick));
             timer.Start();
         }
+        public void refresh()
+        {
+            historyReset();
+            SolidBrush fix_brush = new SolidBrush(Color.LightGreen);
+            SolidBrush change_brush = new SolidBrush(Color.LightSalmon);
+            SolidBrush warn_brush = new SolidBrush(Color.Red);
+            Rectangle rectangle1 = new Rectangle(10, 10, 100, 100);
+            Rectangle rectangle2 = new Rectangle(150, 10, 100, 100);
+            Rectangle rectangle3 = new Rectangle(290, 10, 100, 100);
+            for (int i = 0; i < 5; i++)
+            {
+                Resourse Max = basic.ProcessList[i].Max;
+                Resourse Allocation = basic.ProcessList[i].Allocation;
+                float angleA = Allocation.A * 360 / (Max.A == 0 ? 1 : Max.A);
+                float angleB = Allocation.B * 360 / (Max.B == 0 ? 1 : Max.B);
+                float angleC = Allocation.C * 360 / (Max.C == 0 ? 1 : Max.C);
+                //listBox1.Items.Add(angleA + "," + angleB + "," + angleC);
+                //Graphics g = pictureBoxes[4 - i].CreateGraphics();
+                Bitmap img = new Bitmap(pictureBoxes[i].Width, pictureBoxes[i].Height);
+                pictureBoxes[i].Image = img;
+                Graphics g = Graphics.FromImage(img);
+                g.Clear(Color.White);
+                g.FillPie(fix_brush, rectangle1, 0, 360);
+                g.FillPie(change_brush, rectangle1, -90, angleA);
+                if (Max.A == 0)
+                    g.FillPie(change_brush, rectangle1, 0, 360);
+                g.DrawString(Allocation.A.ToString() + "/" + Max.A.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle1.X + 30, 115);
+                g.FillPie(fix_brush, rectangle2, 0, 360);
+                g.FillPie(change_brush, rectangle2, -90, angleB);
+                if (Max.B == 0)
+                    g.FillPie(change_brush, rectangle2, 0, 360);
+                g.DrawString(Allocation.B.ToString() + "/" + Max.B.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle2.X + 30, 115);
+                // -90+history.A, angleA - history.A
+                g.FillPie(fix_brush, rectangle3, 0, 360);
+                g.FillPie(change_brush, rectangle3, -90, angleC);
+                if (Max.C == 0)
+                    g.FillPie(change_brush, rectangle3, 0, 360);
+                g.DrawString(Allocation.C.ToString() + "/" + Max.C.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle3.X + 30, 115);
+
+
+            }
+            barReset();
+
+        }
         public void init_draw()
         {
             SolidBrush fix_brush = new SolidBrush(Color.LightGreen);
@@ -91,6 +151,7 @@ namespace CSharpAnimationTest1
                 //Graphics g = pictureBoxes[4 - i].CreateGraphics();
                 Bitmap img = new Bitmap(pictureBoxes[i].Width, pictureBoxes[i].Height);
                 pictureBoxes[ i].Image = img;
+
                 Graphics g = Graphics.FromImage(img);
                 g.Clear(Color.White);
                 //Graphics g = pictureBox.CreateGraphics();
@@ -154,21 +215,40 @@ namespace CSharpAnimationTest1
               //panels[3].CreateGraphics().DrawLine(new Pen(Color.Blue,10), 1, 1, 100, 100);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void barReset()
         {
-            if(basic.addRequest(trackBarA.Value,trackBarB.Value,trackBarC.Value, comboBox1.SelectedItem.ToString()))
-            {
                 trackBarA.Maximum = basic.available.A;
                 trackBarB.Maximum = basic.available.B;
                 trackBarC.Maximum = basic.available.C;
                 label_AM.Text = basic.available.A.ToString();
                 label_BM.Text = basic.available.B.ToString();
                 label_CM.Text = basic.available.C.ToString();
-                button1_Click(sender, e);
-            }
-            else
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (switchFlag == false)
             {
-                MessageBox.Show("请重新分配资源","分配失败");
+                if (basic.addRequest(trackBarA.Value, trackBarB.Value, trackBarC.Value, comboBox1.SelectedItem.ToString()))
+                {
+                    barReset();
+                    button1_Click(sender, e);
+                    foreach (Control control in this.Controls)
+                    {
+                        if (control is TrackBar)
+                        {
+                            TrackBar tb = (TrackBar)control;
+                            tb.Value = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("请重新分配资源", "分配失败");
+                }
+            }
+            else if(switchFlag==true)
+            {
+                button4_Click(sender, e);
             }
         }
 
@@ -194,30 +274,168 @@ namespace CSharpAnimationTest1
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (Control control in this.Controls)
+            //foreach (Control control in this.Controls)
+            //{
+            //    if (control is TrackBar)
+            //    {
+            //        TrackBar tb = (TrackBar)control;
+            //        tb.Value = 0;
+            //    }
+            //}
+        }
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //basic.addRequest(1, 1, 1, "P4");
+            //basic.addRequest(1, 1, 1, "P0");
+            Form3 form3 = new Form3(this.basic,new Resourse(trackBarA.Value, trackBarB.Value, trackBarC.Value), comboBox1.SelectedItem.ToString());
+            form3.Show();
+            button1_Click(sender, e);
+            form3.TransfEvent +=new Form3.TransfDelegate(refresh);
+        }
+        private static bool switchFlag = false;
+        private void Switch_btn_Click(object sender, EventArgs e)
+        {
+            switchFlag = !switchFlag;
+            if(switchFlag)
             {
-                if (control is TrackBar)
+                Switch_btn.BackgroundImage = Properties.Resources.switch_ON;
+            }
+            if (!switchFlag)
+            {
+                Switch_btn.BackgroundImage = Properties.Resources.switch_OFF__1_;
+            }
+            Console.WriteLine("Switchflag=" + switchFlag);
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            
+            this.basic = new Basic();
+            refresh();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox_default_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.Clear(this.BackColor);
+        }
+
+        private void groupBox_default_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addInfo(ListBox listBox,int index)
+        {
+                switch (index)
                 {
-                    TrackBar tb = (TrackBar)control;
-                    tb.Value = 0;
+                    case 0:
+                        {
+                        listBox.Items.Add("P0申请2,2,2");
+                        listBox.Items.Add("P1申请1,0,1");
+                        listBox.Items.Add("算法会在预分配后确定目前处于安全状态");
+                        listBox.Items.Add("完成分配");
+                        break;
+                        }
+                    case 1:
+                        {
+                        listBox.Items.Add("P3申请4,1,1");
+                        listBox.Items.Add("申请的资源大于了需要的资源");
+                        listBox.Items.Add("算法无法完成预分配");
+                        break;
+                        }
+                    case 2:
+                        {
+                        listBox.Items.Add("P4申请3,3,3");
+                        listBox.Items.Add("P0申请7,0,0");
+                        listBox.Items.Add("算法会在预分配后发现目前处于安全状态");
+                        listBox.Items.Add("完成分配");
+                        break;
+                        }
+                    case 3:
+                        {
+                            listBox.Items.Add("P4申请3,3,3");
+                            listBox.Items.Add("P0申请8,0,0");
+                            listBox.Items.Add("算法会在预分配后发现目前处于不安全状态");
+                            listBox.Items.Add("分配失败");
+                            break;
+                        }
+                default:
+                        {
+                            listBox.Items.Add("出现了问题");
+                            break;
+                        }
                 }
+        }
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedIndex != -1)
+            {
+                this.label_detail.Visible = true ;
+                this.listBox2.Visible = true;
+                listBox2.Items.Clear();
+                addInfo(listBox2, comboBox2.SelectedIndex);
+
             }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            foreach(var pb in pictureBoxes)
+            switch (comboBox2.SelectedIndex)
             {
-                listBox1.Items.Add(pb.Name);
-            }
-        }
+                case -1:
+                    {
+                        MessageBox.Show("还未选择默认模板");
+                        break;
+                    }
+                case 0:
+                    {
+                        basic.addRequest(2, 2, 2, "P0");
+                        Form3 form3 = new Form3(this.basic, new Resourse(1,0,1),"P1");
+                        form3.Show();
+                        button1_Click(sender, e);
+                        form3.TransfEvent += new Form3.TransfDelegate(refresh);
+                        break;
+                    }
+                case 1:
+                    {
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            basic.addRequest(1, 1, 1, "P4");
-            basic.addRequest(1, 1, 1, "P0");
-            Form3 form3 = new Form3(this.basic,new Resourse(trackBarA.Value, trackBarB.Value, trackBarC.Value), comboBox1.SelectedItem.ToString());
-            form3.Show();
+                        Form3 form3 = new Form3(this.basic, new Resourse(4, 1, 1), "P3");
+                        form3.Show();
+                        button1_Click(sender, e);
+                        form3.TransfEvent += new Form3.TransfDelegate(refresh);
+                        break;
+                    }
+                case 2:
+                    {
+                        basic.addRequest(3, 3, 3, "P4");
+                        Form3 form3 = new Form3(this.basic, new Resourse(7, 0, 0), "P0");
+                        form3.Show();
+                        button1_Click(sender, e);
+                        form3.TransfEvent += new Form3.TransfDelegate(refresh);
+                        break;
+                    }
+                case 3:
+                    {
+                        basic.addRequest(3, 3, 3, "P4");
+                        Form3 form3 = new Form3(this.basic, new Resourse(8, 0, 0), "P0");
+                        form3.Show();
+                        button1_Click(sender, e);
+                        form3.TransfEvent += new Form3.TransfDelegate(refresh);
+                        break;
+                    }
+                default:
+                    {
+                        listBox2.Items.Add("出现了问题");
+                        break;
+                    }
+            }
         }
     }
     public class AngleCollection

@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.trackBarB = new System.Windows.Forms.TrackBar();
             this.trackBarC = new System.Windows.Forms.TrackBar();
             this.trackBarA = new System.Windows.Forms.TrackBar();
@@ -41,7 +40,6 @@
             this.label_Aval = new System.Windows.Forms.Label();
             this.label_Cval = new System.Windows.Forms.Label();
             this.label_Bval = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -57,21 +55,30 @@
             this.label_AM = new System.Windows.Forms.Label();
             this.label_BM = new System.Windows.Forms.Label();
             this.label_CM = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.Switch_btn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label_detail = new System.Windows.Forms.Label();
+            this.groupBox_default = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox_default.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -87,23 +94,11 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(680, 544);
+            this.listBox1.Location = new System.Drawing.Point(779, 751);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(240, 112);
             this.listBox1.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.BackgroundImage = global::CSharpAnimationTest1.Properties.Resources.icon_test_1;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(1004, 300);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 86);
-            this.button2.TabIndex = 3;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // trackBarB
             // 
@@ -131,6 +126,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("宋体", 15F);
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(790, 107);
@@ -198,19 +194,6 @@
             this.label_Bval.Size = new System.Drawing.Size(19, 20);
             this.label_Bval.TabIndex = 16;
             this.label_Bval.Text = "0";
-            // 
-            // button3
-            // 
-            this.button3.BackgroundImage = global::CSharpAnimationTest1.Properties.Resources.icon_test;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(937, 105);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(31, 30);
-            this.button3.TabIndex = 17;
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -361,41 +344,74 @@
             this.label_CM.TabIndex = 36;
             this.label_CM.Text = "12";
             // 
-            // pictureBox1
+            // label17
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(85, 705);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(405, 140);
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("宋体", 20F);
+            this.label17.Location = new System.Drawing.Point(603, 327);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(282, 27);
+            this.label17.TabIndex = 46;
+            this.label17.Text = "是否开启动态过程模拟";
             // 
-            // pictureBox3
+            // comboBox2
             // 
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox3.Location = new System.Drawing.Point(85, 541);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(405, 147);
-            this.pictureBox3.TabIndex = 39;
-            this.pictureBox3.TabStop = false;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("宋体", 15F);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(204, 20);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(240, 28);
+            this.comboBox2.TabIndex = 47;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
-            // pictureBox4
+            // listBox2
             // 
-            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox4.Location = new System.Drawing.Point(85, 386);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(405, 149);
-            this.pictureBox4.TabIndex = 40;
-            this.pictureBox4.TabStop = false;
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 12;
+            this.listBox2.Location = new System.Drawing.Point(204, 61);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(240, 112);
+            this.listBox2.TabIndex = 48;
             // 
-            // pictureBox5
+            // button1
             // 
-            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox5.Location = new System.Drawing.Point(85, 213);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(405, 155);
-            this.pictureBox5.TabIndex = 41;
-            this.pictureBox5.TabStop = false;
+            this.button1.BackgroundImage = global::CSharpAnimationTest1.Properties.Resources.箭头;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(440, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 43);
+            this.button1.TabIndex = 49;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // Switch_btn
+            // 
+            this.Switch_btn.BackgroundImage = global::CSharpAnimationTest1.Properties.Resources.switch_OFF__1_;
+            this.Switch_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Switch_btn.FlatAppearance.BorderSize = 0;
+            this.Switch_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Switch_btn.Location = new System.Drawing.Point(904, 309);
+            this.Switch_btn.Name = "Switch_btn";
+            this.Switch_btn.Size = new System.Drawing.Size(64, 59);
+            this.Switch_btn.TabIndex = 45;
+            this.Switch_btn.UseVisualStyleBackColor = true;
+            this.Switch_btn.Click += new System.EventHandler(this.Switch_btn_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::CSharpAnimationTest1.Properties.Resources.icon_test_1;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(992, 295);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(85, 86);
+            this.button2.TabIndex = 3;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // pictureBox6
             // 
@@ -406,33 +422,101 @@
             this.pictureBox6.TabIndex = 42;
             this.pictureBox6.TabStop = false;
             // 
-            // button1
+            // pictureBox5
             // 
-            this.button1.Location = new System.Drawing.Point(905, 668);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 43;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox5.Location = new System.Drawing.Point(85, 213);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(405, 155);
+            this.pictureBox5.TabIndex = 41;
+            this.pictureBox5.TabStop = false;
             // 
-            // button4
+            // pictureBox4
             // 
-            this.button4.Location = new System.Drawing.Point(1020, 476);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 44;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox4.Location = new System.Drawing.Point(85, 386);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(405, 149);
+            this.pictureBox4.TabIndex = 40;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox3.Location = new System.Drawing.Point(85, 541);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(405, 147);
+            this.pictureBox3.TabIndex = 39;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Location = new System.Drawing.Point(85, 705);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(405, 140);
+            this.pictureBox1.TabIndex = 37;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::CSharpAnimationTest1.Properties.Resources.icon_test;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(937, 105);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(31, 30);
+            this.button3.TabIndex = 17;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 15F);
+            this.label18.Location = new System.Drawing.Point(29, 20);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(169, 20);
+            this.label18.TabIndex = 50;
+            this.label18.Text = "使用默认申请模板";
+            // 
+            // label_detail
+            // 
+            this.label_detail.AutoSize = true;
+            this.label_detail.Font = new System.Drawing.Font("楷体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_detail.Location = new System.Drawing.Point(135, 61);
+            this.label_detail.Name = "label_detail";
+            this.label_detail.Size = new System.Drawing.Size(63, 13);
+            this.label_detail.TabIndex = 51;
+            this.label_detail.Text = "模板细节";
+            // 
+            // groupBox_default
+            // 
+            this.groupBox_default.Controls.Add(this.comboBox2);
+            this.groupBox_default.Controls.Add(this.label_detail);
+            this.groupBox_default.Controls.Add(this.listBox2);
+            this.groupBox_default.Controls.Add(this.label18);
+            this.groupBox_default.Controls.Add(this.button1);
+            this.groupBox_default.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox_default.Location = new System.Drawing.Point(608, 386);
+            this.groupBox_default.Name = "groupBox_default";
+            this.groupBox_default.Size = new System.Drawing.Size(550, 188);
+            this.groupBox_default.TabIndex = 52;
+            this.groupBox_default.TabStop = false;
+            this.groupBox_default.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox_default_Paint);
+            this.groupBox_default.Enter += new System.EventHandler(this.groupBox_default_Enter);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1155, 857);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox_default);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.Switch_btn);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
@@ -464,19 +548,21 @@
             this.Controls.Add(this.trackBarA);
             this.Controls.Add(this.trackBarC);
             this.Controls.Add(this.trackBarB);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("楷体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "Form2";
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.trackBarB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox_default.ResumeLayout(false);
+            this.groupBox_default.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -518,7 +604,13 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Button Switch_btn;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label_detail;
+        private System.Windows.Forms.GroupBox groupBox_default;
     }
 }

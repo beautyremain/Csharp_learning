@@ -15,6 +15,8 @@ namespace CSharpAnimationTest1
    
     public partial class Form3 : Form
     {
+        public delegate void TransfDelegate();
+        public event TransfDelegate TransfEvent;
         private Basic basic;
         List<PictureBox> pictureBoxes = new List<PictureBox>();
         List<Label> avaiLables = new List<Label>();
@@ -125,7 +127,8 @@ namespace CSharpAnimationTest1
                     if (Tick < 270 - angle1)
                     {
                         graphics.DrawImage(Image.FromFile(@"C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimationTest1\Resources\x.png"), rectangle);
-                        Console.WriteLine("Tick=" + Tick + " angle2=" + angle2);
+                        graphics.FillRectangle(new SolidBrush(Color.FromArgb(100, Color.Gray)), 0, 0, 405, 148);
+                        //Console.WriteLine("Tick=" + Tick + " angle2=" + angle2);
                         return;
                         //Console.WriteLine("Finish");
                     }
@@ -153,10 +156,17 @@ namespace CSharpAnimationTest1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Task t2 = new Task( () => {
-                this.basic.addRequestT(7,0,0, "P0");
-            });
+            Task<bool> t2 = new Task<bool>( () => 
+                this.basic.addRequestT(this.demand.A,this.demand.B,this.demand.C,this.name)
+            );
             t2.Start();
+            button1.Enabled = false;
+            //t2.Wait()
+            
+            Task.WaitAll(t2);
+            if (t2.Result&&TransfEvent!=null)
+                TransfEvent();
+
         }
 
     }

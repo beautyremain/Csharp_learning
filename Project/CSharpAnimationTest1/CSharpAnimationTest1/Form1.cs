@@ -401,5 +401,13 @@ namespace CSharpAnimationTest1
             //g.FillRectangle(solidBrush, new Rectangle(0, 0, 10, 10));
             g.DrawString("已完成", new Font("华文楷体", 50), solidBrush, new Point(0, 2));
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            g.DrawImage(Properties.Resources._1,new Point(100,100));
+            g.DrawRectangle(new Pen(Color.Red, 10), new Rectangle(10, 10, 1000, 1000));
+           // Properties.Resources.
+        }
     }
 }

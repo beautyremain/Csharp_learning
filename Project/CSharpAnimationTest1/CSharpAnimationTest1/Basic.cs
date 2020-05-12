@@ -217,14 +217,14 @@ namespace CSharpAnimationTest1
 			init(ProcessList);//list是引用类型，这也是错误的关键.
 			printPro(ProcessList, available);
 		}
-		/*
+        /*
 		 * -----------------------------------------------------------------------下方是异步绘制的区域---------------------------------------------------------------------------------------------------------------------------------------;
 		 */
 
+        #region
 
 
-
-		public bool addRequestT(int A, int B, int C, string name)
+        public bool addRequestT(int A, int B, int C, string name)
 		{
 			Resourse demand = new Resourse(A, B, C);
 			Task<bool> tMain = new Task<bool>(() => CheckNewDemandT(name, demand, available, ProcessList));
@@ -307,9 +307,9 @@ namespace CSharpAnimationTest1
 		void DrawWarn1(PictureBox pictureBox,string word)
 		{	
 			Graphics g = pictureBox.CreateGraphics();
-			g.DrawString(word, new Font("华文楷体", 25), new SolidBrush(Color.DarkRed), new PointF(30, 30));
+			g.DrawString(word, new Font("华文楷体", 25), new SolidBrush(Color.DarkRed), new PointF(10, 30));
 		}
-		void Withdraw(PictureBox pictureBox,Process process, List<bool> map,Resourse a)
+		void Withdraw(PictureBox pictureBox,Process process, List<bool> map,Resourse a,int index)
 		{
 			SolidBrush fix_brush = new SolidBrush(Color.LightGreen);
 			SolidBrush change_brush = new SolidBrush(Color.LightSalmon);
@@ -318,37 +318,67 @@ namespace CSharpAnimationTest1
 			Rectangle rectangle2 = new Rectangle(150, 10, 100, 100);
 			Rectangle rectangle3 = new Rectangle(290, 10, 100, 100);
 
-			for (int i = 0; i < 5; i++)
-			{
-				Resourse Max = this.ProcessList[i].Max;
-				Resourse Allocation = this.ProcessList[i].Allocation;
-				float angleA = Allocation.A * 360 / (Max.A == 0 ? 1 : Max.A);
-				float angleB = Allocation.B * 360 / (Max.B == 0 ? 1 : Max.B);
-				float angleC = Allocation.C * 360 / (Max.C == 0 ? 1 : Max.C);
-				//Graphics g = pictureBoxes[4 - i].CreateGraphics();
-				Bitmap img = new Bitmap(pictureBoxes[i].Width, pictureBoxes[i].Height);
-				pictureBoxes[i].Image = img;
-				Graphics g = Graphics.FromImage(img);
-				g.Clear(Color.White);
-				//Graphics g = pictureBox.CreateGraphics();
-				g.FillPie(fix_brush, rectangle1, 0, 360);
-				g.FillPie(change_brush, rectangle1, -90, angleA);
-				if (Max.A == 0)
-					g.FillPie(change_brush, rectangle1, 0, 360);
-				g.DrawString(Allocation.A.ToString() + "/" + Max.A.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle1.X + 30, 115);
-				g.FillPie(fix_brush, rectangle2, 0, 360);
-				g.FillPie(change_brush, rectangle2, -90, angleB);
-				if (Max.B == 0)
-					g.FillPie(change_brush, rectangle2, 0, 360);
-				g.DrawString(Allocation.B.ToString() + "/" + Max.B.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle2.X + 30, 115);
-				g.FillPie(fix_brush, rectangle3, 0, 360);
-				g.FillPie(change_brush, rectangle3, -90, angleC);
-				if (Max.C == 0)
-					g.FillPie(change_brush, rectangle3, 0, 360);
-				g.DrawString(Allocation.C.ToString() + "/" + Max.C.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle3.X + 30, 115);
+			//for (int i = 0; i < 5; i++)
+			//{
+			//	Resourse Max = this.ProcessList[i].Max;
+			//	Resourse Allocation = this.ProcessList[i].Allocation;
+			//	float angleA = Allocation.A * 360 / (Max.A == 0 ? 1 : Max.A);
+			//	float angleB = Allocation.B * 360 / (Max.B == 0 ? 1 : Max.B);
+			//	float angleC = Allocation.C * 360 / (Max.C == 0 ? 1 : Max.C);
+			//	//Graphics g = pictureBoxes[4 - i].CreateGraphics();
+			//	Bitmap img = new Bitmap(pictureBoxes[i].Width, pictureBoxes[i].Height);
+			//	pictureBoxes[i].Image = img;
+			//	Graphics g = Graphics.FromImage(img);
+			//	g.Clear(Color.White);
+			//	//Graphics g = pictureBox.CreateGraphics();
+			//	g.FillPie(fix_brush, rectangle1, 0, 360);
+			//	g.FillPie(change_brush, rectangle1, -90, angleA);
+			//	if (Max.A == 0)
+			//		g.FillPie(change_brush, rectangle1, 0, 360);
+			//	g.DrawString(Allocation.A.ToString() + "/" + Max.A.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle1.X + 30, 115);
+			//	g.FillPie(fix_brush, rectangle2, 0, 360);
+			//	g.FillPie(change_brush, rectangle2, -90, angleB);
+			//	if (Max.B == 0)
+			//		g.FillPie(change_brush, rectangle2, 0, 360);
+			//	g.DrawString(Allocation.B.ToString() + "/" + Max.B.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle2.X + 30, 115);
+			//	g.FillPie(fix_brush, rectangle3, 0, 360);
+			//	g.FillPie(change_brush, rectangle3, -90, angleC);
+			//	if (Max.C == 0)
+			//		g.FillPie(change_brush, rectangle3, 0, 360);
+			//	g.DrawString(Allocation.C.ToString() + "/" + Max.C.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle3.X + 30, 115);
 
-				drawFlag(pictureBoxes[i], map[i]);
-			}
+			//	drawFlag(pictureBoxes[i], map[i]);
+			//}
+
+			Resourse Max = process.Max;
+			Resourse Allocation = process.Allocation;
+			float angleA = Allocation.A * 360 / (Max.A == 0 ? 1 : Max.A);
+			float angleB = Allocation.B * 360 / (Max.B == 0 ? 1 : Max.B);
+			float angleC = Allocation.C * 360 / (Max.C == 0 ? 1 : Max.C);
+			//Graphics g = pictureBoxes[4 - i].CreateGraphics();
+			Bitmap img = new Bitmap(pictureBox.Width, pictureBox.Height);
+			pictureBox.Image = img;
+			Graphics g = Graphics.FromImage(img);
+			g.Clear(Color.White);
+			//Graphics g = pictureBox.CreateGraphics();
+			g.FillPie(fix_brush, rectangle1, 0, 360);
+			g.FillPie(change_brush, rectangle1, -90, angleA);
+			if (Max.A == 0)
+				g.FillPie(change_brush, rectangle1, 0, 360);
+			g.DrawString(Allocation.A.ToString() + "/" + Max.A.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle1.X + 30, 115);
+			g.FillPie(fix_brush, rectangle2, 0, 360);
+			g.FillPie(change_brush, rectangle2, -90, angleB);
+			if (Max.B == 0)
+				g.FillPie(change_brush, rectangle2, 0, 360);
+			g.DrawString(Allocation.B.ToString() + "/" + Max.B.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle2.X + 30, 115);
+			g.FillPie(fix_brush, rectangle3, 0, 360);
+			g.FillPie(change_brush, rectangle3, -90, angleC);
+			if (Max.C == 0)
+				g.FillPie(change_brush, rectangle3, 0, 360);
+			g.DrawString(Allocation.C.ToString() + "/" + Max.C.ToString(), new Font("等线", 14), new SolidBrush(Color.Black), rectangle3.X + 30, 115);
+
+			drawFlag(pictureBox, map[index]);
+
 			setAvailableLabel(a);
 		}
 		void drawFlag(PictureBox pictureBox,bool flag)
@@ -435,7 +465,7 @@ namespace CSharpAnimationTest1
 				//t2.Start();
 				//Task.WaitAll(t2);
 				myDrawPie(pictureBoxes[i], Available, processList[i].Allocation, processList[i].Max, 1);
-				listBox.Items.Add("到达节点1");
+				//listBox.Items.Add("到达节点1");
 				if (Functions.AsB(processList[i].Need, Available))//这个地方好像有点重复？
 				{
 					if (processList[i].Demand(ref Available, processList[i].Need))
@@ -455,20 +485,22 @@ namespace CSharpAnimationTest1
 					}
 					else
 					{
-						DrawWarn1(pictureBoxes[i], "此进程暂时无法完全分配后释放资源,此时等待2000ms1");						
-						Withdraw(pictureBoxes[i], processList[i],map,Available);//此方法还没有实现
+						DrawWarn1(pictureBoxes[i], "此进程暂时无法完全分配后释放资源,此时等待1000ms1");
+						Thread.Sleep(1000);
+						Withdraw(pictureBoxes[i], processList[i],map,Available,i);
 						drawAll(map);
 						//drawFlag(pictureBoxes[i], map[i]);
-						Thread.Sleep(2000);
+						Thread.Sleep(1000);
 					}
 				}
 				else
 				{
-					DrawWarn1(pictureBoxes[i], "此进程暂时无法完全分配后释放资源,此时等待2000ms2");					
-					Withdraw(pictureBoxes[i], processList[i],map,Available);//此方法还没有实现
+					DrawWarn1(pictureBoxes[i], "此进程暂时无法完全分配后释放资源,此时等待1000ms2");
+					Thread.Sleep(1000);
+					Withdraw(pictureBoxes[i], processList[i],map,Available,i);
 					drawAll(map);
 					//drawFlag(pictureBoxes[i], map[i]);
-					Thread.Sleep(2000);
+					Thread.Sleep(1000);
 				}
 
 			}
@@ -487,13 +519,13 @@ namespace CSharpAnimationTest1
 
 
 
+        #endregion
 
-
-		/*
-		 * -----------------------------------------------------------------------这是异步绘制的区域---------------------------------------------------------------------------------------------------------------------------------------; 
+        /*
+		 * -----------------------------------------------------------------------上方是异步绘制的区域---------------------------------------------------------------------------------------------------------------------------------------; 
 		 */
 
-		public bool addRequest(int A,int B,int C, string name)
+        public bool addRequest(int A,int B,int C, string name)
 		{
 			Resourse demand = new Resourse(A, B, C);
 			if (CheckNewDemand(name, demand, available, ProcessList))
@@ -525,43 +557,5 @@ namespace CSharpAnimationTest1
 		{
 			this.listBox = listbox;
 		}
-		/*
-	int main()
-	{
-		vector<Process> processList;
-		Resourse Available = Resourse(12, 5, 9);
-		init(processList);
-		printPro(processList, Available);
-		while (true)
-		{
-			//CheckNewDemand("P0", Resourse(1, 1, 1), Available, processList);
-			cout << "请输入请求资源的数量,按A，B，C的顺序,和进程号：" << endl;
-			string name;
-			int A, B, C;
-			cin >> A >> B >> C >> name;
-			Resourse demand = Resourse(A, B, C);
-			if (CheckNewDemand(name, demand, Available, processList))
-			{
-				cout << "分配成功!" << endl;
-				for (auto & each : processList)
-				{
-					if (each.name == name)
-					{
-						AddTo(each.Allocation, demand);
-						MinTo(each.Need, demand);
-						MinTo(Available, demand);
-					}
-				}
-			}
-			else
-			{
-				cout << "分配失败!" << endl;
-			}
-			printPro(processList, Available);
-		}
-		std::system("pause");
-		return 0;
-	}
-	*/
 	}
 }
