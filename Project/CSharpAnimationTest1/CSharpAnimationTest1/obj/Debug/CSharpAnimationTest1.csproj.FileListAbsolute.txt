@@ -10,3 +10,5 @@ C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimation
 C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimationTest1\obj\Debug\CSharpAnimationTest1.pdb
 C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimationTest1\obj\Debug\CSharpAnimationTest1.Form3.resources
 C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimationTest1\obj\Debug\CSharpAnimationTest1.Form2.resources
+C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimationTest1\obj\Debug\CSharpAnimationTest1.FormBegin.resources
+C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimationTest1\obj\Debug\CSharpAnimationTest1.FormChoose.resources

@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 namespace CSharpAnimationTest1
 {
     public partial class Form1 : Form
@@ -17,7 +20,7 @@ namespace CSharpAnimationTest1
         int i = 0;
         Pen skyBluePen = new Pen(Brushes.DeepSkyBlue);
         Graphics gChange;
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -28,15 +31,15 @@ namespace CSharpAnimationTest1
         {
 
         }
-        private void activeTick(object o,EventArgs e,Pen pen,Graphics g,ref System.Windows.Forms.Timer timer,ref int tick,float x1,float y1, float x2, float y2)
+        private void activeTick(object o, EventArgs e, Pen pen, Graphics g, ref System.Windows.Forms.Timer timer, ref int tick, float x1, float y1, float x2, float y2)
         {
- 
+
             float width = x2 - x1;
             float height = y2 - y1;
             float cot;
             this.listBox1.Items.Add("activeTick" + tick);
             cot = x2 - x1 == 0 ? 0 : height / width;
-            if(y1>y2)
+            if (y1 > y2)
             {
                 if (x1 + tick > x2 && y1 + tick * cot < y2)
                 {
@@ -52,7 +55,7 @@ namespace CSharpAnimationTest1
                 }
                 //this.listBox1.Items.Add("activeTick" + tick);
                 g.DrawLine(pen, x1 + tick, y1 + tick * cot, newX, newY);
-                tick+=5;
+                tick += 5;
                 return;
             }
             if (cot != 0)
@@ -72,18 +75,18 @@ namespace CSharpAnimationTest1
                 //this.listBox1.Items.Add("activeTick" + tick);
                 g.DrawLine(pen, x1 + tick, y1 + tick * cot, newX, newY);
             }
-            if(width == 0)
+            if (width == 0)
             {
-                float newY=y1+tick+5;
+                float newY = y1 + tick + 5;
                 if (y1 + tick + 5 > y2)
                     newY = y2;
-                if(y1+tick>y2)
+                if (y1 + tick > y2)
                 {
                     timer.Stop();
                     return;
                 }
                 //this.listBox1.Items.Add("activeTick" + tick);
-                g.DrawLine(pen, x1, y1 + tick, x2,newY);
+                g.DrawLine(pen, x1, y1 + tick, x2, newY);
             }
             if (height == 0)
             {
@@ -96,41 +99,41 @@ namespace CSharpAnimationTest1
                     return;
                 }
                 //this.listBox1.Items.Add("activeTick" + tick);
-                g.DrawLine(pen, x1+ tick, y1 , newX, y2);
+                g.DrawLine(pen, x1 + tick, y1, newX, y2);
             }
             tick = tick + 5;
         }
-        private void ActiveDrawLine(Graphics g,Pen pen,int interval, float x1, float y1, float x2, float y2)
+        private void ActiveDrawLine(Graphics g, Pen pen, int interval, float x1, float y1, float x2, float y2)
         {
             int tick = 0;
             //this.listBox1.Items.Add("activeDraw" + tick);
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = interval;
-            timer.Tick += new EventHandler((o,e)=> { activeTick(o, e, pen, g,ref timer,ref tick,x1,y1,x2,y2); });
+            timer.Tick += new EventHandler((o, e) => { activeTick(o, e, pen, g, ref timer, ref tick, x1, y1, x2, y2); });
             timer.Start();
-            
+
             this.listBox1.Items.Add(timer.Enabled);
 
 
         }
-        private void tickEvent(object sender,EventArgs e)
+        private void tickEvent(object sender, EventArgs e)
         {
             i++;
             this.listBox1.Items.Add(i.ToString());
             //button2.Location=new Point(button2.Location.X+10*i,button2.Location.Y);
-            button2.Left += 10*i;
+            button2.Left += 10 * i;
             if (i > 10)
             {
                 myTimer.Stop();
             }
         }
-        private void tickEvent2(object sender,EventArgs e)
+        private void tickEvent2(object sender, EventArgs e)
         {
             i++;
             Graphics g = this.panel2.CreateGraphics();
             //g.Clear(Color.White);
             g.DrawRectangle(skyBluePen,
-                new Rectangle(40+i*10, 40, 150, 200));
+                new Rectangle(40 + i * 10, 40, 150, 200));
             if (i > 10)
             {
                 myTimer.Stop();
@@ -156,8 +159,8 @@ namespace CSharpAnimationTest1
 
             // Draw a rectangle.
             Graphics g = this.panel2.CreateGraphics();
-           g.DrawRectangle(skyBluePen,
-                new Rectangle(40, 40, 150, 200));
+            g.DrawRectangle(skyBluePen,
+                 new Rectangle(40, 40, 150, 200));
             myTimer.Interval = 1000;
             myTimer.Tick += tickEvent2;
             myTimer.Start();
@@ -166,20 +169,20 @@ namespace CSharpAnimationTest1
         }
         private int tick3 = 0;
         private int flag = 0;
-        void tickEvent3(object o,EventArgs e)
+        void tickEvent3(object o, EventArgs e)
         {
-            if(tick3>=25)
+            if (tick3 >= 25)
             {
                 flag = 1;
             }
-            if(tick3<=1)
+            if (tick3 <= 1)
             {
                 flag = 0;
             }
             _ = flag == 0 ? tick3++ : tick3--;
             myTimer2.Interval = 200;
             this.listBox1.Items.Add(tick3);
-            System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(Color.FromArgb(255, 0, tick3*10));//画刷
+            System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(Color.FromArgb(255, 0, tick3 * 10));//画刷
             gChange = this.panel3.CreateGraphics();
             gChange.Clear(Color.White);
             gChange.FillEllipse(myBrush, new Rectangle(5, 5, 60, 40));
@@ -190,7 +193,7 @@ namespace CSharpAnimationTest1
             myTimer2.Interval = 1000;
             myTimer2.Tick += tickEvent3;
             System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(Color.FromArgb(255, 0, tick3));//画刷
-            Pen changingPen = new Pen(Color.FromArgb(255,255,tick3));
+            Pen changingPen = new Pen(Color.FromArgb(255, 255, tick3));
             gChange = this.panel3.CreateGraphics();
             gChange.FillEllipse(myBrush, new Rectangle(5, 5, 60, 40));
             myTimer2.Start();
@@ -216,7 +219,7 @@ namespace CSharpAnimationTest1
             myTimer3.Tick += tickEvent4;
             System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(Color.White);//画刷
             gChange = this.panel3.CreateGraphics();
-            gChange.FillEllipse(myBrush, new Rectangle(5, 5, 6*tick4, 4*tick4));
+            gChange.FillEllipse(myBrush, new Rectangle(5, 5, 6 * tick4, 4 * tick4));
             myTimer3.Start();
         }
         static System.Windows.Forms.Timer myTimer4 = new System.Windows.Forms.Timer();
@@ -230,13 +233,13 @@ namespace CSharpAnimationTest1
         private void button4_Click(object sender, EventArgs e)
         {
             gFade = this.panel4.CreateGraphics();
-            
-            Rectangle[] r = { new Rectangle(10,10,60,60),new Rectangle(10,70,60,60)};
+
+            Rectangle[] r = { new Rectangle(10, 10, 60, 60), new Rectangle(10, 70, 60, 60) };
             gFade.DrawRectangles(pen, r);
-            
+
             myTimer4.Interval = 500;
-            myTimer4.Tick += tickEvent5;myTimer4.Start();
-            
+            myTimer4.Tick += tickEvent5; myTimer4.Start();
+
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -245,9 +248,9 @@ namespace CSharpAnimationTest1
             Graphics gActive = this.panel4.CreateGraphics();
             Pen red_pen = new Pen(Color.Red, 8f);
             gActive.DrawLine(red_pen, 10, 100, 100, 10);
-            ActiveDrawLine(gActive,pen, 100, 10, 100, 100, 10);
+            ActiveDrawLine(gActive, pen, 100, 10, 100, 100, 10);
         }
-        private void activeTick2(Pen pen, Graphics g,int interval, float x1, float y1, float x2, float y2)
+        private void activeTick2(Pen pen, Graphics g, int interval, float x1, float y1, float x2, float y2)
         {
             int tick = 0;
             while (true)
@@ -335,7 +338,7 @@ namespace CSharpAnimationTest1
             //Image.FromFile
             //gActive.DrawImage()
             gActive.DrawImage(Image.FromFile(@"C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimationTest1\Resources\benefits.png"), 50, 50);
-            gActive.DrawImage(Image.FromFile(@"C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimationTest1\Resources\x.png"),new Rectangle(50,50,80,80));
+            gActive.DrawImage(Image.FromFile(@"C:\Users\MyPC\source\repos\Csharp\myProject\CSharpAnimationTest1\CSharpAnimationTest1\Resources\x.png"), new Rectangle(50, 50, 80, 80));
             //Task t1 = new Task(() => ActiveDrawLine(gActive, pen, 10, 10, 10, 10, 100));
             //t1.Start();
             //t1.RunSynchronously();
@@ -359,27 +362,27 @@ namespace CSharpAnimationTest1
             Form2 form2 = new Form2();
             form2.Show();
         }
-        private void activePieEvent(Graphics graphics, SolidBrush solidBrush, SolidBrush solidBrush2, Rectangle rectangle, float angle1, float angle2, System.Windows.Forms.Timer timer,ref int Tick)
+        private void activePieEvent(Graphics graphics, SolidBrush solidBrush, SolidBrush solidBrush2, Rectangle rectangle, float angle1, float angle2, System.Windows.Forms.Timer timer, ref int Tick)
         {
             //Console.WriteLine("被调用");
-            if(Tick>angle2)
+            if (Tick > angle2)
             {
                 timer.Stop();
                 Console.WriteLine("Finish");
                 return;
             }
-            if(Tick<270-angle1)
-                graphics.FillPie(solidBrush, rectangle, angle1+Tick, angle2 > Tick + 5 ?  5 : angle2-Tick);
+            if (Tick < 270 - angle1)
+                graphics.FillPie(solidBrush, rectangle, angle1 + Tick, angle2 > Tick + 5 ? 5 : angle2 - Tick);
             else
                 graphics.FillPie(solidBrush2, rectangle, angle1 + Tick, angle2 > Tick + 5 ? 5 : angle2 - Tick);
-            Tick +=5;
+            Tick += 5;
         }
-        public void activeDrawPie(Graphics graphics,SolidBrush solidBrush, SolidBrush solidBrush2, Rectangle rectangle,float angle1,float angle2,int interval)
+        public void activeDrawPie(Graphics graphics, SolidBrush solidBrush, SolidBrush solidBrush2, Rectangle rectangle, float angle1, float angle2, int interval)
         {
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = interval;
             int Tick = 0;
-            timer.Tick += new EventHandler((o, e) => activePieEvent(graphics, solidBrush, solidBrush2, rectangle, angle1, angle2, timer,ref Tick));
+            timer.Tick += new EventHandler((o, e) => activePieEvent(graphics, solidBrush, solidBrush2, rectangle, angle1, angle2, timer, ref Tick));
             timer.Start();
         }
         private void button9_Click(object sender, EventArgs e)
@@ -405,9 +408,43 @@ namespace CSharpAnimationTest1
         private void button11_Click(object sender, EventArgs e)
         {
             Graphics g = this.CreateGraphics();
-            g.DrawImage(Properties.Resources._1,new Point(100,100));
+            g.DrawImage(Properties.Resources._1, new Point(100, 100));
             g.DrawRectangle(new Pen(Color.Red, 10), new Rectangle(10, 10, 1000, 1000));
-           // Properties.Resources.
+            // Properties.Resources.
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            MyDictionary<string, int> testDic = new MyDictionary<string, int>();
+            testDic["name"] = 321;
+            testDic["price"] = 1;
+            Export("test3.xml", testDic);
+            Import("test3.xml");
+        }
+        public static void Export(string path, MyDictionary<string, int> test)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Create))
+            {
+                XmlSerializer xS = new XmlSerializer(typeof(MyDictionary<string, int>));
+                xS.Serialize(fs, test);
+
+            }
+        }
+        public static MyDictionary<string, int> Import(string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open))
+            {
+                XmlSerializer xS = new XmlSerializer(typeof(MyDictionary<string, int>));
+                MyDictionary<string, int> file_order = (MyDictionary<string, int>)xS.Deserialize(fs);
+                foreach (var o in file_order)
+                {
+                    Console.WriteLine(o.Key);
+                }
+                return file_order;
+
+
+
+            }
         }
     }
 }

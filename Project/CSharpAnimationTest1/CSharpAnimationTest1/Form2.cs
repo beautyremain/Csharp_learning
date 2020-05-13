@@ -26,11 +26,8 @@ namespace CSharpAnimationTest1
                 historys.Add(new AngleCollection(0, 0, 0));
             }
         }
-        public Form2()
+        private void initAll()
         {
-            InitializeComponent();
-            //button2.Click += button1_Click;
-            basic = new Basic();
             historyReset();
             foreach (Control control in this.Controls)
             {
@@ -67,6 +64,27 @@ namespace CSharpAnimationTest1
             trackBarB.Maximum = basic.available.B;
             trackBarC.Maximum = basic.available.C;
             init_draw();
+        }
+        public Form2()
+        {
+            InitializeComponent();
+            //button2.Click += button1_Click;
+            basic = new Basic();
+            initAll();
+            
+
+        }
+        public Form2(MyDictionary<string,int> dic)
+        {
+            InitializeComponent();
+            //button2.Click += button1_Click;
+            basic = new Basic(dic);
+            initAll();
+           
+        }
+        public void notMyTemp()
+        {
+            groupBox_default.Hide();
         }
         private static void activePieEvent(Graphics graphics, SolidBrush solidBrush, SolidBrush solidBrush2, Rectangle rectangle, float angle1, float angle2, Timer timer, ref int Tick)
         {

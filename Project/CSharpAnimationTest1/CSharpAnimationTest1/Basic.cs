@@ -211,11 +211,21 @@ namespace CSharpAnimationTest1
 			Console.WriteLine("Available:"+ Available.A+","+ Available.B+","+ Available.C);
 		}
 		public List<Process> ProcessList = new List<Process>();
-		public Resourse available = new Resourse(12, 5, 9);
+		public Resourse available ;
 		public Basic()
 		{
-			init(ProcessList);//list是引用类型，这也是错误的关键.
+			init(ProcessList);
+			available = new Resourse(12, 5, 9);
 			printPro(ProcessList, available);
+		}
+		public Basic(Dictionary<string,int> dic)
+		{
+			available = new Resourse(dic["SA"], dic["SB"], dic["SC"]);
+			for(int i = 0; i < 5; i++)
+			{
+				Process process = new Process("P" + i, dic[i + "A"], dic[i + "B"], dic[i + "C"]);
+				ProcessList.Add(process);
+			}
 		}
         /*
 		 * -----------------------------------------------------------------------下方是异步绘制的区域---------------------------------------------------------------------------------------------------------------------------------------;
